@@ -3,7 +3,7 @@ const app = express()
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 
-require('dotenv').load()
+require('dotenv').config()
 
 server.listen(process.env.LOCAL_PORT)
 
