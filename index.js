@@ -20,5 +20,6 @@ io.on('connection', function(socket) {
 	})
 	socket.on('toggle', function(data) {
 		socket.broadcast.emit('toggle', data)
+		socket.broadcast.emit('request-data')
 	})
 })
