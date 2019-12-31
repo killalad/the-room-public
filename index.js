@@ -28,7 +28,7 @@ app.post('/auth', function(request, response) {
 		request.session.loggedin = true
 		response.redirect('/')
 	} else {
-		response.send('Please enter Username and Password!')
+		response.redirect('/login')
 	}
 })
 app.get('/login', function(request, response) {
@@ -36,7 +36,11 @@ app.get('/login', function(request, response) {
 })
 
 app.get('/', function(request, response) {
-	response.sendFile(__dirname + '/public/index.html')
+	if (request.session.loggedin) {
+		response.sendFile(__dirname + '/public/index.html')
+	} else {
+		response.redirect('/login')
+	}
 })
 
 io.on('connection', function(socket) {
