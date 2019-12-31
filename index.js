@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const crypto = require('./encryption')
 
 require('dotenv').config()
 
@@ -46,12 +47,14 @@ app.get('/', function(request, response) {
 
 io.on('connection', function(socket) {
 	socket.on('send-data', function(data) {
+		data = JSON.parse(crypto.decrypt(data))
 		socket.broadcast.emit('send-data', data)
 	})
 	socket.on('request-data', function() {
 		socket.broadcast.emit('request-data')
 	})
 	socket.on('toggle', function(data) {
+		data = crypto.encrypt(JSON.stringify(data))
 		socket.broadcast.emit('toggle', data)
 		socket.broadcast.emit('request-data')
 	})
