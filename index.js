@@ -14,9 +14,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.use(
 	session({
-		secret: 'secret',
-		resave: true,
-		saveUninitialized: true,
+		secret: 'sad1eez0phu6Ab6iethaeT8ua4Tepei6',
 	}),
 )
 app.use(bodyParser.urlencoded({ extended: true }))
