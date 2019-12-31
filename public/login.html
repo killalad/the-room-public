@@ -2,47 +2,37 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Login Form Tutorial</title>
-		<style>
-			.login-form {
-				width: 300px;
-				margin: 0 auto;
-				font-family: Tahoma, Geneva, sans-serif;
-			}
-			.login-form h1 {
-				text-align: center;
-				color: #4d4d4d;
-				font-size: 24px;
-				padding: 20px 0 20px 0;
-			}
-			.login-form input[type='password'],
-			.login-form input[type='text'] {
-				width: 100%;
-				padding: 15px;
-				border: 1px solid #dddddd;
-				margin-bottom: 15px;
-				box-sizing: border-box;
-			}
-			.login-form input[type='submit'] {
-				width: 100%;
-				padding: 15px;
-				background-color: #535b63;
-				border: 0;
-				box-sizing: border-box;
-				cursor: pointer;
-				font-weight: bold;
-				color: #ffffff;
-			}
-		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<meta name="msapplication-TileColor" content="#6FBFB7" />
+		<meta name="msapplication-config" content="/icons/browserconfig.xml" />
+		<meta name="theme-color" content="#6FBFB7" />
+
+		<title>login-the-room</title>
+		<link
+			href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/normalize.css" />
+		<link rel="stylesheet" href="/style.css" />
+		<style></style>
 	</head>
 	<body>
-		<div class="login-form">
+		<div class="container">
 			<h1>Login Form</h1>
-			<form action="auth" method="POST">
-				<input type="text" name="username" placeholder="Username" required />
-				<input type="password" name="password" placeholder="Password" required />
-				<input type="submit" />
-			</form>
+			<div class="login-form">
+				<form action="auth" method="POST">
+					<input type="text" name="username" placeholder="Username" required />
+					<input type="password" name="password" placeholder="Password" required />
+					<input type="submit" />
+				</form>
+			</div>
+			<footer>made with love by georgiu</footer>
 		</div>
 	</body>
 </html>

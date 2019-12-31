@@ -119,3 +119,25 @@ footer {
 	text-align: center;
 	font-size: 1.4rem;
 }
+.login-form {
+	max-width: 18rem;
+	margin: 0 auto;
+}
+.login-form input[type='password'],
+.login-form input[type='text'] {
+	width: 100%;
+	padding: 0.8rem;
+	border: 1px solid #dddddd;
+	margin-bottom: 0.8rem;
+	box-sizing: border-box;
+}
+.login-form input[type='submit'] {
+	width: 100%;
+	padding: 0.8rem;
+	background-color: #6fbfb7;
+	border: 0;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-weight: bold;
+	color: #ffffff;
+}

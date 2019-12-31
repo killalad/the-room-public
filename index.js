@@ -26,20 +26,14 @@ app.post('/auth', function(request, response) {
 	var password = request.body.password
 	if (username == process.env.USERNAME && password == process.env.PASSWORD) {
 		request.session.loggedin = true
-		response.redirect('/')
-	} else {
-		response.redirect('/login')
 	}
+	response.redirect('/')
 })
-app.get('/login', function(request, response) {
-	response.sendFile(__dirname + '/public/login.html')
-})
-
 app.get('/', function(request, response) {
 	if (request.session.loggedin) {
 		response.sendFile(__dirname + '/public/index.html')
 	} else {
-		response.redirect('/login')
+		response.sendFile(__dirname + '/public/login.html')
 	}
 })
 
