@@ -24,23 +24,23 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.post('/auth', function(req, res) {
 	if (req.body.password == process.env.PASSWORD) {
 		req.session.authenticated = true
-		res.redirect('/home')
+		res.redirect('/')
 	} else {
 		res.redirect('/login')
 	}
 })
 app.get(
-	'/home',
+	'/',
 	function(req, res, next) {
 		if (req.session && req.session.authenticated) return next()
 		else return res.redirect('/login')
 	},
 	function(req, res) {
-		res.sendFile(__dirname + '/public/index.html')
+		res.sendFile(__dirname + '/pages/index.html')
 	},
 )
 app.get('/login', function(req, res) {
-	res.sendFile(__dirname + '/public/login.html')
+	res.sendFile(__dirname + '/pages/login.html')
 })
 
 io.on('connection', function(socket) {
