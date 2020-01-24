@@ -28,4 +28,11 @@ function decrypt(text) {
 	return decrypted.toString()
 }
 
-module.exports = { decrypt, encrypt }
+function hash(password) {
+	return crypto
+		.createHash('sha256')
+		.update(password)
+		.digest('base64')
+}
+
+module.exports = { decrypt, encrypt, hash }

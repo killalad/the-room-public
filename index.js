@@ -23,12 +23,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/auth', function(req, res) {
-	if (
-		crypto
-			.createHash('sha256')
-			.update(req.body.password)
-			.digest('base64') == process.env.PASSWORD
-	) {
+	if (crypto.hash(req.body.password) == process.env.PASSWORD) {
 		req.session.authenticated = true
 		res.redirect('/')
 	} else {
