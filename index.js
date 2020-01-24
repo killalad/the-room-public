@@ -24,13 +24,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.post('/auth', function(req, res) {
 	if (req.body.password == process.env.PASSWORD) {
 		req.session.authenticated = true
-		res.redirect('/')
+		res.redirect('/home')
 	} else {
 		res.redirect('/login')
 	}
 })
 app.get(
-	'/',
+	'/home',
 	function(req, res, next) {
 		if (req.session && req.session.authenticated) return next()
 		else return res.redirect('/login')
