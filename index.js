@@ -21,11 +21,6 @@ app.use(
 )
 app.use(bodyParser.urlencoded({ extended: true }))
 
-function auth(req, res, next) {
-	if (req.session && req.session.authenticated) return next()
-	else return res.redirect('/login')
-}
-
 app.post('/auth', function(req, res) {
 	if (req.body.password == process.env.PASSWORD) {
 		req.session.authenticated = true
@@ -34,9 +29,16 @@ app.post('/auth', function(req, res) {
 		res.redirect('/login')
 	}
 })
-app.get('/', auth, function(req, res) {
-	res.sendFile(__dirname + '/public/index.html')
-})
+app.get(
+	'/',
+	function(req, res, next) {
+		if (req.session && req.session.authenticated) return next()
+		else return res.redirect('/login')
+	},
+	function(req, res) {
+		res.sendFile(__dirname + '/public/index.html')
+	},
+)
 app.get('/login', function(req, res) {
 	res.sendFile(__dirname + '/public/login.html')
 })
