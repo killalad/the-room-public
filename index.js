@@ -15,26 +15,30 @@ app.use(express.static(__dirname + '/public'))
 app.use(
 	session({
 		secret: 'sad1eez0phu6Ab6iethaeT8ua4Tepei6',
-		resave: false,
-		saveUninitialized: false,
+		resave: true,
+		saveUninitialized: true,
 	}),
 )
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.post('/auth', function(request, response) {
-	var username = request.body.username
-	var password = request.body.password
-	if (username == process.env.USERNAME && password == process.env.PASSWORD) {
-		request.session.loggedin = true
-	}
-	response.redirect('/')
-})
-app.get('/', function(request, response) {
-	if (request.session.loggedin) {
-		response.sendFile(__dirname + '/public/index.html')
+function auth(req, res, next) {
+	if (req.session && req.session.authenticated) return next()
+	else return res.redirect('/login')
+}
+
+app.post('/auth', function(req, res) {
+	if (req.body.password == process.env.PASSWORD) {
+		req.session.authenticated = true
+		res.redirect('/')
 	} else {
-		response.sendFile(__dirname + '/public/login.html')
+		res.redirect('/login')
 	}
+})
+app.get('/', auth, function(req, res) {
+	res.sendFile(__dirname + '/public/index.html')
+})
+app.get('/login', auth, function(req, res) {
+	res.sendFile(__dirname + '/public/login.html')
 })
 
 io.on('connection', function(socket) {
