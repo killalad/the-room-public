@@ -14,15 +14,21 @@ app.use(express.static(__dirname + '/public'))
 
 app.use(
 	session({
-		secret: 'sad1eez0phu6Ab6iethaeT8ua4Tepei6',
-		resave: true,
-		saveUninitialized: true,
+		secret: process.env.SESSION,
+		resave: false,
+		saveUninitialized: false,
+		cookie: { secure: true },
 	}),
 )
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/auth', function(req, res) {
-	if (req.body.password == process.env.PASSWORD) {
+	if (
+		crypto
+			.createHash('sha256')
+			.update(req.body.password)
+			.digest('base64') == process.env.PASSWORD
+	) {
 		req.session.authenticated = true
 		res.redirect('/')
 	} else {
