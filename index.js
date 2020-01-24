@@ -45,9 +45,16 @@ app.get(
 		res.sendFile(__dirname + '/pages/index.html')
 	},
 )
-app.get('/login', function(req, res) {
-	res.sendFile(__dirname + '/pages/login.html')
-})
+app.get(
+	'/login',
+	function(req, res, next) {
+		if (req.session && req.session.authenticated) return res.redirect('/')
+		else return next()
+	},
+	function(req, res) {
+		res.sendFile(__dirname + '/pages/login.html')
+	},
+)
 
 io.on('connection', function(socket) {
 	socket.on('send-data', function(data) {
