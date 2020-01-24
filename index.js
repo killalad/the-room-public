@@ -17,6 +17,9 @@ app.use(
 		secret: process.env.SESSION,
 		resave: false,
 		saveUninitialized: false,
+		cookie: {
+			maxAge: 2592000000,
+		},
 	}),
 )
 app.use(bodyParser.urlencoded({ extended: true }))
