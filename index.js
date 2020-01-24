@@ -37,7 +37,7 @@ app.post('/auth', function(req, res) {
 app.get('/', auth, function(req, res) {
 	res.sendFile(__dirname + '/public/index.html')
 })
-app.get('/login', auth, function(req, res) {
+app.get('/login', function(req, res) {
 	res.sendFile(__dirname + '/public/login.html')
 })
 
