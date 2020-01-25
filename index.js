@@ -54,12 +54,19 @@ app.post('/auth', function(req, res) {
 		res.redirect('/login')
 	}
 })
+app.post(
+	'/get-key',
+	function(req, res, next) {
+		if (req.session && req.session.authenticated) return next()
+		else return res.redirect('/login')
+	},
+	function(req, res) {
+		res.send(process.env.AUTH_TOKEN)
+	},
+)
 
 // SOCKET.IO MIDDLEWARE
 io.use((socket, next) => {
-	console.log(socket.handshake.query.token)
-	console.log(process.env.AUTH_TOKEN)
-
 	if (socket.handshake.query.token == process.env.AUTH_TOKEN) {
 		return next()
 	}

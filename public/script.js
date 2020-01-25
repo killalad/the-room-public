@@ -3,6 +3,9 @@ let socket = io({
 		token: 123,
 	},
 })
+fetch('/get-key', { method: 'POST' }).then(response => {
+	console.log(response)
+})
 let toggle = {
 	mainLight: document.getElementById('mainLightToggle'),
 	tableLight: document.getElementById('tableLightToggle'),
