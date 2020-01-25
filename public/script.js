@@ -1,4 +1,4 @@
-let socket = io('/web')
+let socket = io('http://localhost?token=' + process.env.AUTH_TOKEN)
 let toggle = {
 	mainLight: document.getElementById('mainLightToggle'),
 	tableLight: document.getElementById('tableLightToggle'),
