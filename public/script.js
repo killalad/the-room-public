@@ -1,6 +1,4 @@
-require('dotenv').config({ path: '../.env' })
-
-let socket = io('http://localhost?token=' + process.env.AUTH_TOKEN)
+let socket = io('http://localhost?token=123')
 let toggle = {
 	mainLight: document.getElementById('mainLightToggle'),
 	tableLight: document.getElementById('tableLightToggle'),
