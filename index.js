@@ -61,7 +61,7 @@ app.post(
 		else return res.redirect('/login')
 	},
 	function(req, res) {
-		res.send(process.env.AUTH_TOKEN)
+		res.json({ token: process.env.AUTH_TOKEN })
 	},
 )
 
