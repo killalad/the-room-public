@@ -57,13 +57,15 @@ app.post('/auth', function(req, res) {
 
 // SOCKET.IO MIDDLEWARE
 io.use((socket, next) => {
+	console.log(socket.handshake.query.token)
+	console.log(process.env.AUTH_TOKEN)
+
 	if (socket.handshake.query.token == process.env.AUTH_TOKEN) {
 		return next()
-	} else {
-		const e = new Error('authentication error')
-		logger.warn(e)
-		return next(e)
 	}
+	const e = new Error('authentication error')
+	logger.warn(e)
+	return next(e)
 })
 
 // SOCKET.IO CONNECTION
