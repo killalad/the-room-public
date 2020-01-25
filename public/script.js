@@ -1,4 +1,8 @@
-let socket = io('http://localhost?token=123')
+let socket = io({
+	query: {
+		token: 123,
+	},
+})
 let toggle = {
 	mainLight: document.getElementById('mainLightToggle'),
 	tableLight: document.getElementById('tableLightToggle'),
