@@ -52,7 +52,17 @@ app.get(
 		res.sendFile(__dirname + '/pages/login.html')
 	},
 )
+io.use((socket, next) => {
+	console.log(socket.handshake)
+	console.log('---------')
+	console.log(socket.request)
 
+	//   let clientId = socket.handshake.headers['x-clientid'];
+	//   if (isValid(clientId)) {
+	//     return next();
+	//   }
+	//   return next(new Error('authentication error'));
+})
 io.on('connection', function(socket) {
 	socket.on('send-data', function(data) {
 		data = JSON.parse(crypto.decrypt(data))
