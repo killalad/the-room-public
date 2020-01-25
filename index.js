@@ -53,6 +53,8 @@ app.get(
 	},
 )
 io.use((socket, next) => {
+	console.log(socket.handshake)
+
 	if (socket.handshake.address === '::ffff:127.0.0.1') {
 		return next()
 	} else if (socket.handshake.query.token == process.env.AUTH_TOKEN) {
