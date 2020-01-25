@@ -53,15 +53,12 @@ app.get(
 	},
 )
 io.use((socket, next) => {
-	console.log(socket.handshake)
-	console.log('---------')
-	console.log(socket.request)
-
-	//   let clientId = socket.handshake.headers['x-clientid'];
-	//   if (isValid(clientId)) {
-	//     return next();
-	//   }
-	//   return next(new Error('authentication error'));
+	if (socket.handshake.address === '::ffff:127.0.0.1') {
+		return next()
+	} else if (socket.handshake.query.token == process.env.AUTH_TOKEN) {
+		return next()
+	}
+	return next(new Error('authentication error'))
 })
 io.on('connection', function(socket) {
 	socket.on('send-data', function(data) {
