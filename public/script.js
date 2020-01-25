@@ -1,3 +1,5 @@
+'use strict'
+
 fetch('/get-key', { method: 'POST' })
 	.then(response => response.json())
 	.then(data => {
