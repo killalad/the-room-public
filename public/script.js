@@ -1,4 +1,4 @@
-let socket = io()
+let socket = io('/web')
 let toggle = {
 	mainLight: document.getElementById('mainLightToggle'),
 	tableLight: document.getElementById('tableLightToggle'),
